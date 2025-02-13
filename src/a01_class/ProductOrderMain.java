@@ -1,5 +1,8 @@
 package a01_class;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ProductOrderMain {
     public static void main(String[] args) {
         /**
@@ -9,29 +12,17 @@ public class ProductOrderMain {
          *      3. 최종 결제 금액을 계산하여 출력
          */
 
-        ProductOrder[] orders = new ProductOrder[3];
         int total = 0;
 
-        for (int i = 0; i < orders.length; i++) {
-            orders[i] = new ProductOrder();
-        }
+        ArrayList<ProductOrder> orders = new ArrayList<>();
+        orders.add(new ProductOrder("마우스", 10000, 2));
+        orders.add(new ProductOrder("키보드", 50000, 1));
+        orders.add(new ProductOrder("모니터", 150000, 1));
 
-        orders[0].productName = "마우스";
-        orders[0].price = 10000;
-        orders[0].quantity = 2;
+        for(ProductOrder order : orders) {
+            System.out.printf("상품명: %s\n가격: %d\n수량: %d\n", order.productName, order.price, order.quantity);
 
-        orders[1].productName = "키보드";
-        orders[1].price = 50000;
-        orders[1].quantity = 1;
-
-        orders[2].productName = "모니터";
-        orders[2].price = 150000;
-        orders[2].quantity = 1;
-
-        for (int i = 0; i < orders.length; i++) {
-            System.out.println("상품 명: " + orders[i].productName + "\n가격: " + orders[i].price + "\n수량: " + orders[i].quantity);
-
-            total += orders[i].price * orders[i].quantity;
+            total += order.price * order.quantity;
         }
 
         System.out.println("총 상품 금액: " + total);
